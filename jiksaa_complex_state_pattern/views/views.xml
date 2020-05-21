@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="counter_tree_view">
+            <field name="name">counter.tree.view</field>
+            <field name="model">jk.complex.counter</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="user_id"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="counter_form_view">
+            <field name="name">counter.form.view</field>
+            <field name="model">jk.complex.counter</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_run" type="object" string="Run"/>
+                        <button name="action_done" type="object" string="Lock"/>
+                        <button name="action_count" type="object" string="Count"/>
+                        <button name="action_notify" type="object" string="Notify"/>
+                        <field name="state_id" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="value"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="counter_state_tree_view">
+            <field name="name">counter.tree.view</field>
+            <field name="model">jk.counter.state</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="counter_action">
+            <field name="name">Complex State Pattern Counters</field>
+            <field name="res_model">jk.complex.counter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="counter_state_action">
+            <field name="name">Counter States</field>
+            <field name="res_model">jk.counter.state</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+        <menuitem name="Complex State Pattern" id="simple_state_pattern_root_menu"/>
+
+        <!-- menu categories -->
+        <menuitem name="Counters" id="counter_menu" parent="simple_state_pattern_root_menu" action="counter_action"/>
+        <menuitem name="Counter States" id="counter_state_menu" parent="simple_state_pattern_root_menu" action="counter_state_action"/>
+
+    </data>
+</odoo>

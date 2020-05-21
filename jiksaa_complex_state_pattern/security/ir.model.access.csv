@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jk_complex_counter,access_jk_complex_counter,model_jk_complex_counter,base.group_user,1,1,1,1
+access_jk_counter_state,access_jk_counter_state,model_jk_counter_state,base.group_user,1,1,1,1
+access_counter_state_draft,access_counter_state_draft,model_counter_state_draft,base.group_user,1,1,1,1
+access_counter_state_running,access_counter_state_running,model_counter_state_running,base.group_user,1,1,1,1
+access_counter_state_done,access_counter_state_done,model_counter_state_done,base.group_user,1,1,1,1

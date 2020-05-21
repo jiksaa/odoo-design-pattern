@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="counter_state_draft" model="counter.state.draft">
+        <field name="name">Draft</field>
+    </record>
+
+    <record id="counter_state_running" model="counter.state.running">
+        <field name="name">Running</field>
+    </record>
+
+    <record id="counter_state_done" model="counter.state.done">
+        <field name="name">Done</field>
+    </record>
+</odoo>
