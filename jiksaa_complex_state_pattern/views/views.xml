@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="value"/>
                     <field name="user_id"/>
-                    <field name="state_id"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -24,7 +24,8 @@
                         <button name="action_done" type="object" string="Lock"/>
                         <button name="action_count" type="object" string="Count"/>
                         <button name="action_notify" type="object" string="Notify"/>
-                        <field name="state_id" widget="statusbar"/>
+                        <field name="state" widget="statusbar"/>
+                        <field name="state_id" invisible="1"/>
                     </header>
                     <sheet>
                         <group>

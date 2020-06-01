@@ -23,13 +23,13 @@ class CounterStateDraft(models.Model):
 
     type = fields.Char(default=_name)
 
-    def action_done(self):
+    def action_done(self, counter):
         raise ValidationError('Draft Counter could not be set to Done')
 
-    def action_run(self):
-        self.counter.state = COUNTER_STATE_RUNNING
+    def action_run(self, counter):
+        counter.state_id = self.env.ref('jiksaa_complex_state_pattern.counter_state_running')
 
-    def action_count(self):
+    def action_count(self, counter):
         raise ValidationError('Counter should be running to perform this action')
 
 
@@ -40,14 +40,14 @@ class CounterStateRunning(models.Model):
 
     type = fields.Char(default=_name)
 
-    def action_done(self):
-        self.counter.state = COUNTER_STATE_DONE
+    def action_done(self, counter):
+        counter.state_id = self.env.ref('jiksaa_complex_state_pattern.counter_state_done')
 
-    def action_run(self):
+    def action_run(self, counter):
         raise ValidationError('The counter is already running')
 
-    def action_count(self):
-        self.counter.value += 1
+    def action_count(self, counter):
+        counter.value += 1
 
 
 class CounterStateDone(models.Model):
@@ -59,11 +59,11 @@ class CounterStateDone(models.Model):
 
     locked_error = 'Counter is locked'
 
-    def action_done(self):
+    def action_done(self, counter):
         raise ValidationError(self.locked_error)
 
-    def action_run(self):
+    def action_run(self, counter):
         raise ValidationError(self.locked_error)
 
-    def action_count(self):
+    def action_count(self, counter):
         raise ValidationError(self.locked_error)
